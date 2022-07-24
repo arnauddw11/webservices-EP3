@@ -8,11 +8,9 @@ module.exports = {
 		maxAge: 3 * 60 * 60,
 	},
 	database: {
-    //client mongoose
-		client: '',
-		host: 'localhost',
-		port: 3306,
-		name: 'x_test',
+		DATABASE_URI: 'mongodb+srv://arnaud:arnaud1@cluster0.kpaa7.mongodb.net/testDB?retryWrites=true&w=majority',
+    MONGODBUSERNAME: 'arnaud',
+    MONGODBPASS: 'arnaud1'
   	},
 	pagination: {
 		limit: 100,

@@ -9,10 +9,9 @@ module.exports = {
 	},
 
 	database: {
-    client: 'arnaud',
-		host: 'mongodb+srv://arnaud:arnaud1@webservices.hbyz1zu.mongodb.net/?retryWrites=true&w=majority',
-    port: 3306,
-    name: 'webservices',
+		DATABASE_URI: 'mongodb+srv://arnaud:arnaud1@cluster0.kpaa7.mongodb.net/testDB?retryWrites=true&w=majority',
+    MONGODBUSERNAME: 'arnaud',
+    MONGODBPASS: 'arnaud1'
   },
 	pagination: {
     limit: 100,
