@@ -4,10 +4,10 @@ const { kledingstukModel } = require('./kledingstuk');
 
 const Schema = mongoose.Schema;
 
-const Schoen = (kledingstukModel,{
+const Schoen = new Schema (kledingstukModel,{
   schoenmaat: {type: int}
 });
-const SchoenModel = mongoose.model('Schoen', Schoen); 
+const schoenModel = mongoose.model('Schoen', Schoen); 
 
 module.exports = {
   schoenModel,
