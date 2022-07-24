@@ -1,10 +1,8 @@
 module.exports = {
   env: 'NODE_ENV',
   database: {
-    //veranderen na aanmaken database
-    host: 'DATABASE_HOST',
-    port: 'DATABASE_PORT',
-    username: 'DATABASE_USERNAME',
-    password: 'DATABASE_PASSWORD'
+    DATABASE_URI: 'mongodb+srv://arnaud:arnaud1@cluster0.kpaa7.mongodb.net/testDB?retryWrites=true&w=majority',
+    MONGODBUSERNAME: 'arnaud',
+    MONGODBPASS: 'arnaud1'
   }
 }

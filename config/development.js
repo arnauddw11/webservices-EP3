@@ -9,11 +9,9 @@ module.exports = {
 	},
   
 	database: {
-    //client wss mongoose?
-    client: '',
-    host: 'localhost',
-    port: 3306,
-    name: 'budget',
+    DATABASE_URI: 'mongodb+srv://arnaud:arnaud1@cluster0.kpaa7.mongodb.net/testDB?retryWrites=true&w=majority',
+    MONGODBUSERNAME: 'arnaud',
+    MONGODBPASS: 'arnaud1'
   },
 	pagination: {
     limit: 100,
