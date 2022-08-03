@@ -1,7 +1,7 @@
 const config = require('config');
 const mongoose = require('mongoose');
-const { env } = require('../../config/custom-environment-variables');
-const { getChildLogger } = require('../core/logging');
+const { env } = require('../../../config/custom-environment-variables');
+const { getChildLogger } = require('../../core/logging');
 
 let db;
 async function initialiseDb() {

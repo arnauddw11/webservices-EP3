@@ -3,7 +3,7 @@ const config = require('config');
 const koaCors = require('@koa/cors');
 const bodyParser = require('koa-bodyparser');
 const { initializeLogger, getLogger } = require('./core/logging');
-const { initializeData, shutdownData } = require('./data');
+const { initializeData, shutdownData } = require('./core/data');
 const installRest = require('./rest');
 
 const NODE_ENV = config.get('env');
