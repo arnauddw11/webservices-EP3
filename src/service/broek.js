@@ -8,21 +8,6 @@ const debugLog = (message, meta = {}) => {
   this.logger.debug(message, meta);
 };
 
-const getAll = async () => {
-  debugLog('Ophalen van alle broeken');
-  const data = await broekRepository.findAll();
-  const count = await data.length;
-  return {
-    data,
-    count
-  };
-};
-
-const getById = async (id) => {
-  debugLog('Ophalen van broek met id');
-  const data = await broekRepository.findById(id);
-  return data;
-}
 
 const getBySize = async (id) => {
   debugLog('Ophalen van broeken met maat');
@@ -30,27 +15,18 @@ const getBySize = async (id) => {
   return data;
 }
 
-const getByName = async (name) => {
-  debugLog('Ophalen van kledingstuk met naam');
-  const data = await kledingstukRepository.findByName(name);
-  const count = await data.length;
-  return {
-    data,
-    count
-  };
-};
 
 
 const create = async ({
   name,
   dropdate
 }) => {
-  debugLog('maak nieuw kledingstuk aan', {
+  debugLog('maak nieuwe broek aan', {
     name,
-    birthdate
+    dropdate
   });
 
-  return kledingstukRepository.create({
+  return broekRepository.create({
     name,
     dropdate
   });
@@ -61,26 +37,17 @@ const updateById = (id, {
   name,
   dropdate
 }) => {
-  debugLog(`Updating kledingstuk met id ${id}`);
-  const updatedKledingstuk = kledingstukRepository.updateById(id, {
+  debugLog(`Updating broek met id ${id}`);
+  const updatedBroek = broekRepository.updateById(id, {
     name,
     dropdate
   });
-  return updatedKledingstuk;
+  return updatedBroek;
 };
 
 
-const deleteById = (id) => {
-  debugLog(`Verwijderen kledingstuk met id ${id}`);
-  kledingstukRepository.deleteById(id);
-}
-
 module.exports = {
-  getAll,
-  getById,
   getBySize,
   create,
   updateById,
-  deleteById,
-  getByName,
 };
