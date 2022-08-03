@@ -5,7 +5,7 @@ const { kledingstukModel } = require('./kledingstuk');
 const Schema = mongoose.Schema;
 
 const Bovenstuk = new Schema (kledingstukModel,{
-  maat: {
+  size: {
   type: Char,
   validate : {
     validator: function(value){
