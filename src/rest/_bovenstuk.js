@@ -50,7 +50,7 @@ const deleteBovenstuk = async (ctx) => {
  */
 module.exports = (app) => {
 	const router = new Router({
-		prefix: '/broek',
+		prefix: '/bovenstuk',
 	});
 //publieke routes
 	router.get('/', getAllBovenstukken);
