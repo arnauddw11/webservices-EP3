@@ -1,9 +1,9 @@
-const { getChildLogger } = require('../core/logging');
-const { verifyPassword, hashPassword } = require('../core/password');
-const { generateJWT, verifyJWT } = require('../core/jwt');
-const Role = require('../core/roles');
-const ServiceError = require('../core/serviceError');
-const userRepository = require('../repository/userRepository');
+const { getChildLogger } = require('./core/logging');
+const { verifyPassword, hashPassword } = require('./core/password');
+const { generateJWT, verifyJWT } = require('./core/jwt');
+const Role = require('./core/roles');
+const ServiceError = require('./core/serviceError');
+const userRepository = require('./repository/userRepository');
 
 const debugLog = (message, meta = {}) => {
   if (!this.logger) this.logger = getChildLogger('user-service');

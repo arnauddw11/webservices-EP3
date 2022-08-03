@@ -1,10 +1,11 @@
 const config = require('config');
 const mongoose = require('mongoose');
-const { env } = require('../config/custom-environment-variables');
+const { env } = require('../../config/custom-environment-variables');
 const { getChildLogger } = require('../core/logging');
 
 let db;
-async function initialiseDb() {
+async function initializeDb() {
+  //TODO migrations en seeding vd database
   const logger = getChildLogger('database');
   logger.info('Initialiseren van de databank connectie');
 
@@ -39,7 +40,7 @@ async function closeDb() {
   await db.stop();
 }
   module.exports = {
-    initialiseDb,
+    initializeDb,
     getMongoDb,
     closeDb
   };

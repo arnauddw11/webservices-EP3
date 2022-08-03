@@ -1,6 +1,6 @@
 const uuid = require('uuid');
 const { getChildLogger } = require('../core/logging');
-const { userModel } = require('../models/user');
+const { userModel } = require('../data/models/user');
 
 const debugLog = (message, meta = {}) => {
 	if (!this.logger) this.logger = getChildLogger('user-service');
