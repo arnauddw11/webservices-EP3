@@ -53,11 +53,10 @@ const register = async ({
 }) => {
   debugLog('Creeër een nieuwe user', { name });
   const passwordHash = await hashPassword(password);
-
   const user = await userRepository.create({
     name,
-    email,
     passwordHash,
+    email,
     roles: [Role.USER],
   });
 

@@ -4,17 +4,16 @@ const { env } = require('../../config/custom-environment-variables');
 const { getChildLogger } = require('../core/logging');
 
 let db;
+const URI = config.get('database.uri');
+
 async function initializeDb() {
   //TODO migrations en seeding vd database
   const logger = getChildLogger('database');
   logger.info('Initialiseren van de databank connectie');
 
-  const uri = "mongodb+srv://arnaud:arnaud1@cluster0.kpaa7.mongodb.net/testDB?retryWrites=true&w=majority";
-  
-  logger.info(uri);
   try {
     mongoose.connect(
-      uri, {
+      URI, {
         useNewUrlParser: true,
         useUnifiedTopology: true
       },

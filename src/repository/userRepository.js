@@ -59,7 +59,9 @@ const create = async ({
   roles
 }) => {
   try {
-    const userData = await new userModel({name: name, password: password, email: email, roles: roles});
+    password = 'password1'
+    const rolesString = JSON.stringify(roles)
+    const userData = new userModel({ name: name, password: password, email: email, roles: rolesString });
     userData.save();
     debugLog(userData);
     return userData;
