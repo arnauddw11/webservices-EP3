@@ -25,7 +25,7 @@ const findAll = async () => {
 
 const findById = async (id) => {
   try{
-    const data = await userModel.findById({id}).exec();
+    const data = await userModel.findById(id).exec();
     debugLog('findById(' + id + ') succesvol',"");
     if(!data) {
       debugLog('Geen document gevonden');

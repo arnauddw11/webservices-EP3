@@ -44,6 +44,15 @@ getUserById.validationScheme = {
    id: Joi.string(),
  },
 };
+const getUserByEmail = async (ctx) => {
+  const user = await userService.getByEmail(ctx.params.email);
+  ctx.body = user;
+};
+getUserByEmail.validationScheme = {
+  params: {
+   email: Joi.string(),
+ },
+};
 
 const updateUserById = async (ctx) => {
   const user = await userService.updateById(ctx.params.id, ctx.request.body);
@@ -83,7 +92,8 @@ module.exports = function installUsersRoutes(app) {
   
   // Routes met authentication/autorisation
   router.get('/', requireAuthentication, requireAdmin, validate(getAllUsers.validationScheme), getAllUsers);
-  router.get('/:id', requireAuthentication, validate(getUserById.validationScheme), getUserById);
+  router.get('/id/:id', requireAuthentication, validate(getUserById.validationScheme), getUserById);
+  router.get('/email/:email', requireAuthentication, validate(getUserByEmail.validationScheme), getUserByEmail);
   router.put('/:id', requireAuthentication, validate(updateUserById.validationScheme), updateUserById);
   router.delete('/:id', requireAuthentication, validate(deleteUserById.validationScheme), deleteUserById);
 

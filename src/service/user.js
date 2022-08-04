@@ -86,7 +86,17 @@ const getById = async (id) => {
 
   return makeExposedUser(user);
 };
+const getByEmail = async (email) => {
+  debugLog(`Haal user met email ${email}`);
+  const user = await userRepository.findByEmail(email);
 
+
+  if (!user) {
+    throw ServiceError.notFound(`Geen user met email ${email} bestaat`, { email });
+  }
+
+  return makeExposedUser(user);
+};
 const updateById = async (id, { name, email }) => {
   debugLog(`Updating user met id ${id}`, { name, email });
   const user = await userRepository.updateById(id, { name, email });
@@ -144,6 +154,7 @@ module.exports = {
   register,
   getAll,
   getById,
+  getByEmail,
   updateById,
   deleteById,
   checkAndParseSession,

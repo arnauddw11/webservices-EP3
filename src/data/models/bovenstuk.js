@@ -4,7 +4,7 @@ const validator = require('validator');
 
 const Schema = mongoose.Schema;
 
-const Bovenstuk = extendSchema({
+const Bovenstuk = new Schema({
   name: {
     type: String,
 

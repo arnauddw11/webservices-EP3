@@ -1,6 +1,5 @@
 const Router = require('@koa/router');
 const broekService = require('../service/broek');
-const kledingstukService = require('../service/kledingstuk');
 const { requireAuthentication, makeRequireRole } = require('../core/auth');
 
 const getAllBroeken = async (ctx) => {
