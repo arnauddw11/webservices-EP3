@@ -1,5 +1,5 @@
 const uuid = require('uuid');
-const { schoenModel } = require('../../models/schoen');
+const { schoenModel } = require('../../data/models/schoen');
 
 const findBySize = async (size) => {
   try{

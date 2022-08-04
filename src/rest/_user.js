@@ -51,7 +51,7 @@ const updateUserById = async (ctx) => {
 };
 updateUserById.validationScheme = {
   params: {
-    id: Joi.string().uuid(),
+    id: Joi.string(),
   },
   body: {
     name: Joi.string().max(255),
@@ -65,7 +65,7 @@ const deleteUserById = async (ctx) => {
 };
 deleteUserById.validationScheme = {
   params: {
-    id: Joi.string().uuid(),
+    id: Joi.string(),
   },
 };
 

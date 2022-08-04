@@ -1,12 +1,14 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 const { kledingstukModel } = require('./kledingstuk');
+const extendSchema = require('mongoose-extend-schema');
+
 
 const Schema = mongoose.Schema;
 
-const Bovenstuk = new Schema (kledingstukModel,{
+const Bovenstuk = extendSchema(kledingstukModel,{
   size: {
-  type: Char,
+  type: String,
   validate : {
     validator: function(value){
       return value = 'S', 'M', 'L', 'XL';

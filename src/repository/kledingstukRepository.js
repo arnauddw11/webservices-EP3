@@ -1,6 +1,6 @@
 const uuid = require('uuid');
 const { getChildLogger } = require('../core/logging');
-const { kledingstukModel } = require('../models/kledingstuk');
+const { kledingstukModel } = require('../data/models/kledingstuk');
 
 const debugLog = (message, meta = {}) => {
 	if (!this.logger) this.logger = getChildLogger('kledingstuk-service');

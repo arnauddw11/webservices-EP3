@@ -1,6 +1,6 @@
 const {
   getChildLogger
-} = require('../../core/logging');
+} = require('../core/logging');
 const schoenRepository = require('../repository/kledingstukken/broekRepository');
 
 const debugLog = (message, meta = {}) => {

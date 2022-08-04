@@ -1,10 +1,11 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 const { kledingstukModel } = require('./kledingstuk');
+const extendSchema = require('mongoose-extend-schema');
 
 const Schema = mongoose.Schema;
 
-const Schoen = new Schema (kledingstukModel,{
+const Schoen = extendSchema(kledingstukModel,{
   schoenmaat: {
   type: int,
   requirement: [true, 'schoenmaat moet ingevuld zijn']

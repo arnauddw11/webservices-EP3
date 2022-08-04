@@ -3,6 +3,7 @@ const kledingstukService = require('../service/kledingstuk');
 const { requireAuthentication, makeRequireRole } = require('../core/auth');
 
 const getAllKledingstukken = async (ctx) => {
+	console.log(1)
 	ctx.body = await kledingstukService.getAll();
 };
 
