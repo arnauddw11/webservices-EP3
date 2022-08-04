@@ -4,15 +4,15 @@ const kledingstukService = require('../service/kledingstuk');
 const { requireAuthentication, makeRequireRole } = require('../core/auth');
 
 const getAllBroeken = async (ctx) => {
-	ctx.body = await kledingstukService.getAll();
+	ctx.body = await broekService.getAll();
 };
 
 const getBroekByName = async (ctx) => {
-	ctx.body = await kledingstukService.getByName(ctx.params.name);
+	ctx.body = await broekService.getByName(ctx.params.name);
 };
 
 const getBroekById = async (ctx) => {
-	ctx.body = await kledingstukService.getById(ctx.params.id);
+	ctx.body = await broekService.getById(ctx.params.id);
 };
 
 const createBroek = async (ctx) => {
@@ -25,7 +25,7 @@ const createBroek = async (ctx) => {
 
 
 const getBroekBySize = async (ctx) => {
-	ctx.body = await broekService.getBroekBySize(ctx.params.size);
+	ctx.body = await broekService.getBySize(ctx.params.size);
 };
 
 
@@ -39,7 +39,7 @@ const updateBroek = async (ctx) => {
 
 
 const deleteBroek = async (ctx) => {
-	kledingstukService.deleteById(ctx.params.id);
+	broekService.deleteById(ctx.params.id);
 	ctx.status = 204;
 };
 
@@ -54,9 +54,9 @@ module.exports = (app) => {
 	});
 //publieke routes
 	router.get('/', getAllBroeken);
-	router.get('/:id', getBroekById);
-  router.get('/:size', getBroekBySize);
-  router.get('/name', getBroekByName)
+	router.get('/id/:id', getBroekById);
+  router.get('/size/:size', getBroekBySize);
+  router.get('/name/:name', getBroekByName)
 //private routes
 	router.post('/',requireAuthentication, createBroek);
 	router.put('/:id',requireAuthentication, updateBroek);

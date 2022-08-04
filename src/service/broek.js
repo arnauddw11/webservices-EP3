@@ -8,8 +8,17 @@ const debugLog = (message, meta = {}) => {
   this.logger.debug(message, meta);
 };
 
+const getAll = async () => {
+  debugLog('Ophalen van alle broeken');
+  const data = await broekRepository.findAll();
+  const count = await data.length;
+  return {
+    data,
+    count
+  };
+};
 
-const getBySize = async (id) => {
+const getBySize = async (size) => {
   debugLog('Ophalen van broeken met maat');
   const data = await broekRepository.findBySize(size);
   return data;
@@ -19,16 +28,20 @@ const getBySize = async (id) => {
 
 const create = async ({
   name,
-  dropdate
+  dropdate,
+  size
 }) => {
+  console.log(name);
   debugLog('maak nieuwe broek aan', {
     name,
-    dropdate
+    dropdate,
+    size
   });
 
   return broekRepository.create({
     name,
-    dropdate
+    dropdate,
+    size
   });
 };
 
@@ -45,9 +58,33 @@ const updateById = (id, {
   return updatedBroek;
 };
 
+const getById = async (id) => {
+  debugLog('Ophalen van broek met id');
+  const data = await broekRepository.findById(id);
+  return data;
+}
+
+const getByName = async (name) => {
+  debugLog('Ophalen van broek met naam');
+  const data = await broekRepository.findByName(name);
+  const count = await data.length;
+  return {
+    data,
+    count
+  };
+};
+
+const deleteById = (id) => {
+  debugLog(`Verwijderen kledingstuk met id ${id}`);
+  broekRepository.deleteById(id);
+}
 
 module.exports = {
+  getAll,
+  getById,
+  getByName,
   getBySize,
   create,
   updateById,
+  deleteById,
 };

@@ -1,11 +1,23 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
-const { kledingstukModel } = require('./kledingstuk');
-const extendSchema = require('mongoose-extend-schema');
-
 const Schema = mongoose.Schema;
 
-const Broek = extendSchema (kledingstukModel,{
+const Broek = new Schema ({
+  name: {
+    type: String,
+
+    validate: {
+      validator: function (value){
+        return value.length >= 3;
+      },
+      message: 'naam moet minstens 3 karakters hebben'
+    },
+    required: [true, 'Naam moet ingevuld zijn']
+  },
+  dropdate: {
+    type: Date,
+    required:[true, 'Datum waarop kledingstuk uit is gekomen moet ingevuld zijn']
+  },
   size: {
   type: String,
   validate : {

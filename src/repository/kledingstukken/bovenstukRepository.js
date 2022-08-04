@@ -1,4 +1,3 @@
-const uuid = require('uuid');
 const { bovenstukModel } = require('../../data/models/bovenstuk');
 
 const findBySize = async (size) => {
@@ -22,8 +21,7 @@ const create = async ({
   size,
 }) => {
   try {
-    const id = uuid.v4();
-    const bovenstukData = await new bovenstukModel({id: id, name: name, dropdate: dropdate, size: size});
+    const bovenstukData = await new bovenstukModel({name: name, dropdate: dropdate, size: size});
     bovenstukData.save();
     debugLog(bovenstukData);
     return bovenstukData;
