@@ -45,9 +45,43 @@ const updateById = (id, {
   return updatedSchoen;
 };
 
+const getAll = async () => {
+  debugLog('Ophalen van alle broeken');
+  const data = await schoenRepository.findAll();
+  const count = await data.length;
+  return {
+    data,
+    count
+  };
+};
+
+const getById = async (id) => {
+  debugLog('Ophalen van broek met id');
+  const data = await schoenRepository.findById(id);
+  return data;
+}
+
+const getByName = async (name) => {
+  debugLog('Ophalen van broek met naam');
+  const data = await schoenRepository.findByName(name);
+  const count = await data.length;
+  return {
+    data,
+    count
+  };
+};
+
+const deleteById = (id) => {
+  debugLog(`Verwijderen kledingstuk met id ${id}`);
+  schoenRepository.deleteById(id);
+}
 
 module.exports = {
+  getAll,
+  getById,
+  getByName,
   getBySize,
   create,
   updateById,
+  deleteById,
 };

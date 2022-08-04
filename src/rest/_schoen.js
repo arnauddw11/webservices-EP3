@@ -4,15 +4,15 @@ const kledingstukService = require('../service/kledingstuk');
 const { requireAuthentication, makeRequireRole } = require('../core/auth');
 
 const getAllSchoenen = async (ctx) => {
-	ctx.body = await kledingstukService.getAll();
+	ctx.body = await schoenService.getAll();
 };
 
 const getSchoenByName = async (ctx) => {
-	ctx.body = await kledingstukService.getByName(ctx.params.name);
+	ctx.body = await schoenService.getByName(ctx.params.name);
 };
 
 const getSchoenById = async (ctx) => {
-	ctx.body = await kledingstukService.getById(ctx.params.id);
+	ctx.body = await schoenService.getById(ctx.params.id);
 };
 
 const createSchoen = async (ctx) => {
@@ -39,7 +39,7 @@ const updateSchoen = async (ctx) => {
 
 
 const deleteSchoen = async (ctx) => {
-	kledingstukService.deleteById(ctx.params.id);
+	schoenService.deleteById(ctx.params.id);
 	ctx.status = 204;
 };
 
@@ -54,9 +54,9 @@ module.exports = (app) => {
 	});
 //publieke routes
 	router.get('/', getAllSchoenen);
-	router.get('/:id', getSchoenById);
-  router.get('/:size', getSchoenBySize);
-  router.get('/name', getSchoenByName)
+	router.get('/id/:id', getSchoenById);
+  router.get('/size/:size', getSchoenBySize);
+  router.get('/name/name', getSchoenByName)
 //private routes
 	router.post('/',requireAuthentication, createSchoen);
 	router.put('/:id',requireAuthentication, updateSchoen);
