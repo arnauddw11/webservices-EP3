@@ -46,7 +46,7 @@ const updateById = (id, {
 };
 
 const getAll = async () => {
-  debugLog('Ophalen van alle broeken');
+  debugLog('Ophalen van alle schoenen');
   const data = await schoenRepository.findAll();
   const count = await data.length;
   return {
@@ -56,13 +56,13 @@ const getAll = async () => {
 };
 
 const getById = async (id) => {
-  debugLog('Ophalen van broek met id');
+  debugLog('Ophalen van schoen met id');
   const data = await schoenRepository.findById(id);
   return data;
 }
 
 const getByName = async (name) => {
-  debugLog('Ophalen van broek met naam');
+  debugLog('Ophalen van schoen met naam');
   const data = await schoenRepository.findByName(name);
   const count = await data.length;
   return {
@@ -72,7 +72,7 @@ const getByName = async (name) => {
 };
 
 const deleteById = (id) => {
-  debugLog(`Verwijderen kledingstuk met id ${id}`);
+  debugLog(`Verwijderen schoen met id ${id}`);
   schoenRepository.deleteById(id);
 }
 

@@ -1,18 +1,17 @@
 const Router = require('@koa/router');
 const bovenstukService = require('../service/bovenstuk');
-const kledingstukService = require('../service/kledingstuk');
 const { requireAuthentication, makeRequireRole } = require('../core/auth');
 
 const getAllBovenstukken = async (ctx) => {
-	ctx.body = await kledingstukService.getAll();
+	ctx.body = await bovenstukService.getAll();
 };
 
 const getBovenstukByName = async (ctx) => {
-	ctx.body = await kledingstukService.getByName(ctx.params.name);
+	ctx.body = await bovenstukService.getByName(ctx.params.name);
 };
 
 const getBovenstukById = async (ctx) => {
-	ctx.body = await kledingstukService.getById(ctx.params.id);
+	ctx.body = await bovenstukService.getById(ctx.params.id);
 };
 
 const createBovenstuk = async (ctx) => {
@@ -39,7 +38,7 @@ const updateBovenstuk = async (ctx) => {
 
 
 const deleteBovenstuk = async (ctx) => {
-	kledingstukService.deleteById(ctx.params.id);
+	bovenstukService.deleteById(ctx.params.id);
 	ctx.status = 204;
 };
 
@@ -54,9 +53,9 @@ module.exports = (app) => {
 	});
 //publieke routes
 	router.get('/', getAllBovenstukken);
-	router.get('/:id', getBovenstukById);
-  router.get('/:size', getBovenstukBySize);
-  router.get('/name', getBovenstukByName)
+	router.get('/id/:id', getBovenstukById);
+  router.get('/size/:size', getBovenstukBySize);
+  router.get('/name/name', getBovenstukByName)
 //private routes
 	router.post('/',requireAuthentication, createBovenstuk);
 	router.put('/:id',requireAuthentication, updateBovenstuk);

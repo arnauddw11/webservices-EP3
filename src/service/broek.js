@@ -75,7 +75,7 @@ const getByName = async (name) => {
 };
 
 const deleteById = (id) => {
-  debugLog(`Verwijderen kledingstuk met id ${id}`);
+  debugLog(`Verwijderen broek met id ${id}`);
   broekRepository.deleteById(id);
 }
 

@@ -41,9 +41,65 @@ const updateById = async (id, {
      debugLog(err);
   }
 };
+const findById = async (id) => {
+  try{
+    const data = await bovenstukModel.findById(id).exec();
+    debugLog('findById(' + id + ') succesvol',"");
+    if(!data) {
+      debugLog('Geen document gevonden');
+      throw new Error('Geen document gevonden');
+    }
+    return data;
+   } catch (error) {
+    debugLog(`FindById error:`, error);
+     return error;
+   }
+};
+
+const findByName = async (name) => {
+  try{
+    const data = await bovenstukModel.find({'name': name}).exec();
+    debugLog('findByName(' + name + ') succesvol',"");
+    if(!data) {
+      debugLog('Geen document gevonden');
+      throw new Error('Geen document gevonden');
+    }
+    return data;
+   } catch (error) {
+    debugLog(`FindByName error:`, error);
+     return error;
+   }
+};
+
+const deleteById = async (id) => {
+  try{
+    await bovenstukModel.findById(id).remove().exec();
+  }catch(err){
+    debugLog(err);
+  }
+};
+const findAll = async () => {
+  try{
+    const data = await bovenstukModel.find().exec();
+    debugLog('findAll succesvol',"");
+    if(!data) {
+      debugLog('Geen document gevonden');
+      console.log('test');
+      throw new Error('Geen document gevonden');
+    }
+    return data;
+   } catch (error) {
+    debugLog(`FindAll error:`, error);
+     return error;
+   }
+};
 
 module.exports = {
+  findAll,
+  findById,
+  findByName,
   findBySize,
   create,
   updateById,
+  deleteById,
 };

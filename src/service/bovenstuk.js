@@ -43,9 +43,43 @@ const updateById = (id, {
   return updatedBovenstuk;
 };
 
+const getAll = async () => {
+  debugLog('Ophalen van alle bovenstukken');
+  const data = await bovenstukRepository.findAll();
+  const count = await data.length;
+  return {
+    data,
+    count
+  };
+};
+
+const getById = async (id) => {
+  debugLog('Ophalen van bovenstuk met id');
+  const data = await bovenstukRepository.findById(id);
+  return data;
+}
+
+const getByName = async (name) => {
+  debugLog('Ophalen van bovenstuk met naam');
+  const data = await bovenstukRepository.findByName(name);
+  const count = await data.length;
+  return {
+    data,
+    count
+  };
+};
+
+const deleteById = (id) => {
+  debugLog(`Verwijderen bovenstuk met id ${id}`);
+  bovenstukRepository.deleteById(id);
+}
 
 module.exports = {
+  getAll,
+  getById,
+  getByName,
   getBySize,
   create,
   updateById,
+  deleteById,
 };
