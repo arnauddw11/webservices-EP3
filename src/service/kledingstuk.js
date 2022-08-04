@@ -41,7 +41,7 @@ const create = async ({
 }) => {
   debugLog('maak nieuw kledingstuk aan', {
     name,
-    birthdate
+    dropdate
   });
 
   return kledingstukRepository.create({

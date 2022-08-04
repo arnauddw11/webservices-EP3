@@ -4,10 +4,6 @@ const validator = require('validator');
 const Schema = mongoose.Schema;
 
 const Kledingstuk = new Schema({
-  id: {
-    type: String,
-    required: [true, 'id moet ingevuld zijn'],
-  },
   name: {
     type: String,
 

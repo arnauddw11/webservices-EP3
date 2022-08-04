@@ -57,8 +57,7 @@ const create = async ({
   dropdate
 }) => {
   try {
-    const id = uuid.v4();
-    const kledingstukData = await new kledingstukModel({id: id, name: name, dropdate: dropdate});
+    const kledingstukData = await new kledingstukModel({name: name, dropdate: dropdate});
     kledingstukData.save();
     debugLog(kledingstukData);
     return kledingstukData;

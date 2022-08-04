@@ -25,7 +25,7 @@ const findAll = async () => {
 
 const findById = async (id) => {
   try{
-    const data = await userModel.find({'_id': id}).exec();
+    const data = await userModel.findById({id}).exec();
     debugLog('findById(' + id + ') succesvol',"");
     if(!data) {
       debugLog('Geen document gevonden');
@@ -40,8 +40,8 @@ const findById = async (id) => {
 
 const findByEmail = async (email) => {
   try{
-    const data = await userModel.find({'email': email}).exec();
-    debugLog('findByEmail(' + email + ') succesvol',"");
+    const data = await userModel.findOne({email: email}).exec();
+    debugLog('findByEmail(' + data.email + ') succesvol',"");
     if(!data) {
       debugLog('Geen document gevonden');
       throw new Error('Geen document gevonden');
@@ -54,14 +54,13 @@ const findByEmail = async (email) => {
 };
 const create = async ({
   name,
-  password,
+  passwordHash,
   email,
   roles
 }) => {
   try {
-    password = 'password1'
     const rolesString = JSON.stringify(roles)
-    const userData = new userModel({ name: name, password: password, email: email, roles: rolesString });
+    const userData = new userModel({ name: name, password: passwordHash, email: email, roles: rolesString });
     userData.save();
     debugLog(userData);
     return userData;

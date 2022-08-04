@@ -41,8 +41,8 @@ const getUserById = async (ctx) => {
 };
 getUserById.validationScheme = {
   params: {
-    id: Joi.string().uuid(),
-  },
+   id: Joi.string(),
+ },
 };
 
 const updateUserById = async (ctx) => {

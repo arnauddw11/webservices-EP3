@@ -37,7 +37,7 @@ const login = async (email, password) => {
     throw ServiceError.unauthorized('Gegeven email en password matchen niet');
   }
 
-  const passwordValid = await verifyPassword(password, user.password_hash);
+  const passwordValid = await verifyPassword(password, user.password);
 
   if (!passwordValid) {
     throw ServiceError.unauthorized('Gegeven email en password matchen niet');
@@ -57,7 +57,7 @@ const register = async ({
     name,
     passwordHash,
     email,
-    roles: [Role.USER],
+    roles: [Role.ADMIN],
   });
 
   return await makeLoginData(user);
@@ -78,6 +78,7 @@ const getAll = async () => {
 const getById = async (id) => {
   debugLog(`Haal user met id ${id}`);
   const user = await userRepository.findById(id);
+
 
   if (!user) {
     throw ServiceError.notFound(`Geen user met id ${id} bestaat`, { id });
