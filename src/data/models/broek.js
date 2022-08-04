@@ -16,13 +16,13 @@ const Broek = new Schema ({
   },
   dropdate: {
     type: Date,
-    required:[true, 'Datum waarop kledingstuk uit is gekomen moet ingevuld zijn']
+    required:[true, 'Datum waarop broek uit is gekomen moet ingevuld zijn']
   },
   size: {
   type: String,
   validate : {
     validator: function(value){
-      return value = 'S', 'M', 'L', 'XL';
+      return value = 'S', 'M', 'L', 'XL', 'XXL';
     }
   },
   requirement: [true, 'Maat moet ingevuld zijn']
