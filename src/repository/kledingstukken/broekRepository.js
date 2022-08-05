@@ -12,7 +12,6 @@ const findAll = async () => {
     debugLog('findAll succesvol',"");
     if(!data) {
       debugLog('Geen document gevonden');
-      console.log('test');
       throw new Error('Geen document gevonden');
     }
     return data;

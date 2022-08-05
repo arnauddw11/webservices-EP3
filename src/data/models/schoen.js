@@ -21,7 +21,7 @@ const Schoen = new Schema({
     required:[true, 'Datum waarop schoen uit is gekomen moet ingevuld zijn']
   },
   size: {
-    type: int,
+    type: Number,
     requirement: [true, 'Maat moet ingevuld zijn']
 }});
 const schoenModel = mongoose.model('Schoen', Schoen); 

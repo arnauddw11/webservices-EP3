@@ -14,7 +14,6 @@ const findAll = async () => {
     debugLog('findAll succesvol',"");
     if(!data) {
       debugLog('Geen document gevonden');
-      console.log('test');
       throw new Error('Geen document gevonden');
     }
     return data;
@@ -46,7 +45,7 @@ const create = async ({
   size,
 }) => {
   try {
-    const schoenData = await new schoenData({
+    const schoenData = await new schoenModel({
       name: name,
       dropdate: dropdate,
       size: size

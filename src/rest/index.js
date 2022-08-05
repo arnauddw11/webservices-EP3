@@ -4,6 +4,7 @@ const installBovenstukRouter = require('./_bovenstuk');
 const installBroekRouter = require('./_broek');
 const installHealthRouter = require('./_health');
 const installSchoenRouter = require('./_schoen');
+const installOutfitRouter = require('./_outfit');
 const installUserRouter = require('./_user');
 const installValidationRouter = require('./_validation');
 
@@ -22,6 +23,7 @@ module.exports = (app) => {
   installBroekRouter(router);
   installHealthRouter(router);
   installSchoenRouter(router);
+  installOutfitRouter(router);
   installUserRouter(router);
   installValidationRouter(router);
 

@@ -4,7 +4,7 @@ const {
 const bovenstukRepository = require('../repository/kledingstukken/bovenstukRepository');
 
 const debugLog = (message, meta = {}) => {
-  if (!this.logger) this.logger = getChildLogger('familie-service');
+  if (!this.logger) this.logger = getChildLogger('bovenstuk-service');
   this.logger.debug(message, meta);
 };
 
