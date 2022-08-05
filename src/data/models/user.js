@@ -9,18 +9,18 @@ const User = new Schema({
 
     //valideer dat naam > 3 char
     validate : {
-        validator: function(value) {
-          return value.length >= 3;
-        },
-        message: 'Naam moet minstens 3 karakters hebben'
+      validator: function(value) {
+        return value.length >= 3;
+      },
+      message: 'Naam moet minstens 3 karakters hebben',
     },
-    required: [true, 'Naam moet ingevuld zijn']
+    required: [true, 'Naam moet ingevuld zijn'],
   },
 
   password : {
     type: String,
 
-    required: [true, 'Password moet ingevuld zijn']
+    required: [true, 'Password moet ingevuld zijn'],
   },
   email: { 
     type: String,
@@ -30,13 +30,13 @@ const User = new Schema({
     validate: {
       validator: (value) => {
         return validator.isEmail(value);
-      }
-    }
+      },
+    },
   },
   roles: {
-    type: String
+    type: String,
   },
-})
+});
 const userModel = mongoose.model('User', User); 
 
 module.exports = {

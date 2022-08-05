@@ -1,8 +1,10 @@
 const Joi = require('joi');
 const Router = require('@koa/router');
+
 const userService = require('../service/user');
 const Role = require('../core/roles');
 const { requireAuthentication, makeRequireRole } = require('../core/auth');
+
 const validate = require('./_validation');
 
 
@@ -41,8 +43,8 @@ const getUserById = async (ctx) => {
 };
 getUserById.validationScheme = {
   params: {
-   id: Joi.string(),
- },
+    id: Joi.string(),
+  },
 };
 const getUserByEmail = async (ctx) => {
   const user = await userService.getByEmail(ctx.params.email);
@@ -50,8 +52,8 @@ const getUserByEmail = async (ctx) => {
 };
 getUserByEmail.validationScheme = {
   params: {
-   email: Joi.string(),
- },
+    email: Joi.string(),
+  },
 };
 
 const updateUserById = async (ctx) => {

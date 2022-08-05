@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const validator = require('validator');
 const Schema = mongoose.Schema;
 
 const Broek = new Schema ({
@@ -10,23 +9,23 @@ const Broek = new Schema ({
       validator: function (value){
         return value.length >= 3;
       },
-      message: 'naam moet minstens 3 karakters hebben'
+      message: 'naam moet minstens 3 karakters hebben',
     },
-    required: [true, 'Naam moet ingevuld zijn']
+    required: [true, 'Naam moet ingevuld zijn'],
   },
   dropdate: {
     type: Date,
-    required:[true, 'Datum waarop broek uit is gekomen moet ingevuld zijn']
+    required:[true, 'Datum waarop broek uit is gekomen moet ingevuld zijn'],
   },
   size: {
-  type: String,
-  validate : {
-    validator: function(value){
-      return value = 'S', 'M', 'L', 'XL', 'XXL';
-    }
+    type: String,
+    validate : {
+      validator: function(value){
+        return value = 'S', 'M', 'L', 'XL', 'XXL';
+      },
+    },
+    requirement: [true, 'Maat moet ingevuld zijn'],
   },
-  requirement: [true, 'Maat moet ingevuld zijn']
-}
 });
 const broekModel = mongoose.model('Broek', Broek); 
 

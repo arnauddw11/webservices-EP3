@@ -1,38 +1,40 @@
-const { outfitModel
-} = require('../data/models/outfit');
-const { schoenModel} = require('../data/models/schoen');
-const {broekModel} = require('../data/models/broek');
-const {bovenstukModel} = require('../data/models/bovenstuk');
-
 const {
-  getChildLogger
+  outfitModel,
+} = require('../data/models/outfit');
+const {
+  schoenModel
+} = require('../data/models/schoen');
+const {
+  broekModel
+} = require('../data/models/broek');
+const {
+  bovenstukModel
+} = require('../data/models/bovenstuk');
+const {
+  getChildLogger,
 } = require('../core/logging');
 const debugLog = (message, meta = {}) => {
   if (!this.logger) this.logger = getChildLogger('outfit-service');
   this.logger.debug(message, meta);
 };
 const findAll = async () => {
-  try{
+  try {
     const data = await outfitModel.find().exec();
-
-    const bovenstuk = await bovenstukModel.find().exec();
-    const broek = await broekModel.find().exec();
-    const schoen = await schoenModel.find().exec();
     const outfits = new Array();
     console.log(data[0]._id);
-    for(var i = 0; i < data.length; i++){
-      outfits.push(findById(data[i]._id))
+    for (var i = 0; i < data.length; i++) {
+      outfits.push(findById(data[i]._id));
     }
-    debugLog('findAll succesvol',"");
-    if(!data) {
+    debugLog('findAll succesvol', '');
+    if (!data) {
       debugLog('Geen document gevonden');
       throw new Error('Geen document gevonden');
     }
     return data;
-   } catch (error) {
-    debugLog(`FindAll error:`, error);
-     return error;
-   }
+  } catch (error) {
+    debugLog('FindAll error:', error);
+    return error;
+  }
 };
 
 const create = async ({
@@ -44,7 +46,7 @@ const create = async ({
     const outfitData = await new outfitModel({
       bovenstukId: bovenstukId,
       broekId: broekId,
-      schoenId: schoenId
+      schoenId: schoenId,
     });
     outfitData.save();
     debugLog(outfitData);
@@ -63,7 +65,7 @@ const updateById = async (id, {
     await outfitModel.findById(id).update({
       bovenstukId: bovenstukId,
       broekId: broekId,
-      schoenId: schoenId
+      schoenId: schoenId,
     }).exec();
   } catch (err) {
     debugLog(err);
@@ -80,16 +82,16 @@ const findById = async (id) => {
     const outfit = {
       bovenstuk: bovenstuk,
       broek: broek,
-      schoen: schoen
-    }
-    debugLog('findById(' + id + ') succesvol', "");
+      schoen: schoen,
+    };
+    debugLog('findById(' + id + ') succesvol', '');
     if (!data) {
       debugLog('Geen document gevonden');
       throw new Error('Geen document gevonden');
     }
     return outfit;
   } catch (error) {
-    debugLog(`FindById error:`, error);
+    debugLog('FindById error:', error);
     return error;
   }
 };

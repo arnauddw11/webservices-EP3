@@ -1,5 +1,5 @@
 const {
-  getChildLogger
+  getChildLogger,
 } = require('../core/logging');
 const outfitRepository = require('../repository/outfitRepository');
 
@@ -48,7 +48,7 @@ const getAll = async () => {
   const count = await data.length;
   return {
     data,
-    count
+    count,
   };
 };
 
@@ -56,12 +56,12 @@ const getById = async (id) => {
   debugLog('Ophalen van outfit met id');
   const data = await outfitRepository.findById(id);
   return data;
-}
+};
 
 const deleteById = (id) => {
   debugLog(`Verwijderen outfit met id ${id}`);
   outfitRepository.deleteById(id);
-}
+};
 
 module.exports = {
   getAll,

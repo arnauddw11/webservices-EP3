@@ -1,5 +1,5 @@
 const {
-  getChildLogger
+  getChildLogger,
 } = require('../core/logging');
 const schoenRepository = require('../repository/kledingstukken/broekRepository');
 
@@ -9,38 +9,38 @@ const debugLog = (message, meta = {}) => {
 };
 
 
-const getBySize = async (id) => {
+const getBySize = async (size) => {
   debugLog('Ophalen van schoenen met maat');
   const data = await schoenRepository.findBySize(size);
   return data;
-}
+};
 
 
 
 const create = async ({
   name,
-  dropdate
+  dropdate,
 }) => {
   debugLog('maak nieuwe schoen aan', {
     name,
-    dropdate
+    dropdate,
   });
 
   return schoenRepository.create({
     name,
-    dropdate
+    dropdate,
   });
 };
 
 
 const updateById = (id, {
   name,
-  dropdate
+  dropdate,
 }) => {
   debugLog(`Updating schoen met id ${id}`);
   const updatedSchoen = schoenRepository.updateById(id, {
     name,
-    dropdate
+    dropdate,
   });
   return updatedSchoen;
 };
@@ -51,7 +51,7 @@ const getAll = async () => {
   const count = await data.length;
   return {
     data,
-    count
+    count,
   };
 };
 
@@ -59,7 +59,7 @@ const getById = async (id) => {
   debugLog('Ophalen van schoen met id');
   const data = await schoenRepository.findById(id);
   return data;
-}
+};
 
 const getByName = async (name) => {
   debugLog('Ophalen van schoen met naam');
@@ -67,14 +67,14 @@ const getByName = async (name) => {
   const count = await data.length;
   return {
     data,
-    count
+    count,
   };
 };
 
 const deleteById = (id) => {
   debugLog(`Verwijderen schoen met id ${id}`);
   schoenRepository.deleteById(id);
-}
+};
 
 module.exports = {
   getAll,

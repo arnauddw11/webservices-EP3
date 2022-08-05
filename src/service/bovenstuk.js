@@ -1,5 +1,5 @@
 const {
-  getChildLogger
+  getChildLogger,
 } = require('../core/logging');
 const bovenstukRepository = require('../repository/kledingstukken/bovenstukRepository');
 
@@ -9,36 +9,36 @@ const debugLog = (message, meta = {}) => {
 };
 
 
-const getBySize = async (id) => {
+const getBySize = async (size) => {
   debugLog('Ophalen van bovenstukken met maat');
   const data = await bovenstukRepository.findBySize(size);
   return data;
-}
+};
 
 const create = async ({
   name,
-  dropdate
+  dropdate,
 }) => {
   debugLog('maak nieuw bovenstuk aan', {
     name,
-    dropdate
+    dropdate,
   });
 
   return bovenstukRepository.create({
     name,
-    dropdate
+    dropdate,
   });
 };
 
 
 const updateById = (id, {
   name,
-  dropdate
+  dropdate,
 }) => {
   debugLog(`Updating bovenstuk met id ${id}`);
   const updatedBovenstuk = bovenstukRepository.updateById(id, {
     name,
-    dropdate
+    dropdate,
   });
   return updatedBovenstuk;
 };
@@ -49,7 +49,7 @@ const getAll = async () => {
   const count = await data.length;
   return {
     data,
-    count
+    count,
   };
 };
 
@@ -57,7 +57,7 @@ const getById = async (id) => {
   debugLog('Ophalen van bovenstuk met id');
   const data = await bovenstukRepository.findById(id);
   return data;
-}
+};
 
 const getByName = async (name) => {
   debugLog('Ophalen van bovenstuk met naam');
@@ -65,14 +65,14 @@ const getByName = async (name) => {
   const count = await data.length;
   return {
     data,
-    count
+    count,
   };
 };
 
 const deleteById = (id) => {
   debugLog(`Verwijderen bovenstuk met id ${id}`);
   bovenstukRepository.deleteById(id);
-}
+};
 
 module.exports = {
   getAll,

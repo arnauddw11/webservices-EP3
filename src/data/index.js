@@ -1,7 +1,9 @@
 const config = require('config');
 const mongoose = require('mongoose');
-const { env } = require('../../config/custom-environment-variables');
-const { getChildLogger } = require('../core/logging');
+
+const {
+  getChildLogger,
+} = require('../core/logging');
 
 let db;
 const URI = config.get('database.uri');
@@ -15,31 +17,31 @@ async function initializeDb() {
     mongoose.connect(
       URI, {
         useNewUrlParser: true,
-        useUnifiedTopology: true
+        useUnifiedTopology: true,
       },
       () => {
-        logger.info(" Mongoose is verbonden")
+        logger.info(' Mongoose is verbonden');
         db = mongoose.connection;
 
         db.on('error', logger.info.bind(logger, 'MongoDB connectie niet geslaagd:'));
-      }
+      },
     );
   } catch (e) {
-    logger.info("Kan geen verbinding maken");
+    logger.info('Kan geen verbinding maken');
   }
-};
+}
 
 function getMongoDb() {
   if (!db) throw new Error('Initialiseer data laag alvorens in de mongodb instance te gaan');
   return db;
-};
+}
 async function closeDb() {
   await mongoose.connection.dropDatabase();
   await mongoose.connection.close();
   await db.stop();
 }
-  module.exports = {
-    initializeDb,
-    getMongoDb,
-    closeDb
-  };
+module.exports = {
+  initializeDb,
+  getMongoDb,
+  closeDb,
+};
