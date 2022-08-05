@@ -2,13 +2,13 @@ const {
   outfitModel,
 } = require('../data/models/outfit');
 const {
-  schoenModel
+  schoenModel,
 } = require('../data/models/schoen');
 const {
-  broekModel
+  broekModel,
 } = require('../data/models/broek');
 const {
-  bovenstukModel
+  bovenstukModel,
 } = require('../data/models/bovenstuk');
 const {
   getChildLogger,
@@ -21,16 +21,29 @@ const findAll = async () => {
   try {
     const data = await outfitModel.find().exec();
     const outfits = new Array();
-    console.log(data[0]._id);
+    let outfit = {
+      bovenstuk: '',
+      broek: '',
+      schoen: '',
+    };
     for (var i = 0; i < data.length; i++) {
-      outfits.push(findById(data[i]._id));
+      const bovenstuk = await bovenstukModel.findById(data[i].bovenstukId).exec();
+      const broek = await broekModel.findById(data[i].broekId).exec();
+      const schoen = await schoenModel.findById(data[i].schoenId).exec();
+      outfit = {
+        _id: data[i]._id,
+        bovenstuk: bovenstuk,
+        broek: broek,
+        schoen: schoen,
+      };
+      outfits.push(outfit);
     }
     debugLog('findAll succesvol', '');
     if (!data) {
       debugLog('Geen document gevonden');
       throw new Error('Geen document gevonden');
     }
-    return data;
+    return outfits;
   } catch (error) {
     debugLog('FindAll error:', error);
     return error;

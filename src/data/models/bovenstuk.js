@@ -22,6 +22,7 @@ const Bovenstuk = new Schema({
     type: String,
     validate : {
       validator: function(value){
+        // eslint-disable-next-line no-unused-vars
         return value = 'S', 'M', 'L', 'XL', 'XXL';
       },
     },
