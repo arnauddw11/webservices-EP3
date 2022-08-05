@@ -8,7 +8,6 @@ module.exports = {
 		maxAge: 3 * 60 * 60,
 	},
 	database: {
-		DATABASE_URI: 'mongodb+srv://arnaud:arnaud1@cluster0.kpaa7.mongodb.net/testDB?retryWrites=true&w=majority',
     MONGODBUSERNAME: 'arnaud',
     MONGODBPASS: 'arnaud1'
   	},
