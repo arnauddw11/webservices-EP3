@@ -6,3 +6,4 @@ config/production.js
 .vscode
 .vscode/launch.jsons
 yarn.lock
+.env
