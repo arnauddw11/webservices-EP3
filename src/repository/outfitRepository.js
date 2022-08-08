@@ -111,7 +111,7 @@ const findById = async (id) => {
 
 const deleteById = async (id) => {
   try {
-    await outfitModel.findById(id).remove().exec();
+    await outfitModel.deleteOne({_id: id}).exec();
   } catch (err) {
     debugLog(err);
   }

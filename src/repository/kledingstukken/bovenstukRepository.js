@@ -79,7 +79,7 @@ const findByName = async (name) => {
 
 const deleteById = async (id) => {
   try{
-    await bovenstukModel.findById(id).remove().exec();
+    await bovenstukModel.deleteOne({_id: id}).exec();
   }catch(err){
     debugLog(err);
   }

@@ -106,7 +106,7 @@ const findByName = async (name) => {
 
 const deleteById = async (id) => {
   try {
-    await schoenModel.findById(id).remove().exec();
+    await schoenModel.deleteOne({_id: id}).exec();
   } catch (err) {
     debugLog(err);
   }

@@ -95,7 +95,7 @@ const updateById = async (id, {
 
 const deleteById = async (id) => {
   try {
-    await userModel.findById(id).remove().exec();
+    await userModel.deleteOne({_id: id}).exec();
   } catch (err) {
     debugLog(err);
   }

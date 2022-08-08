@@ -27,7 +27,7 @@ const createBovenstuk = async (ctx) => {
 
 
 const getBovenstukBySize = async (ctx) => {
-  ctx.body = await bovenstukService.getBovenstukBySize(ctx.params.size);
+  ctx.body = await bovenstukService.getBySize(ctx.params.size);
 };
 
 
@@ -58,7 +58,7 @@ module.exports = (app) => {
   router.get('/', getAllBovenstukken);
   router.get('/id/:id', getBovenstukById);
   router.get('/size/:size', getBovenstukBySize);
-  router.get('/name/name', getBovenstukByName);
+  router.get('/name/:name', getBovenstukByName);
 
   const requireAdmin = makeRequireRole(Role.ADMIN);
 

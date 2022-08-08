@@ -26,7 +26,7 @@ const createSchoen = async (ctx) => {
 
 
 const getSchoenBySize = async (ctx) => {
-  ctx.body = await schoenService.getSchoenBySize(ctx.params.size);
+  ctx.body = await schoenService.getBySize(ctx.params.size);
 };
 
 
@@ -57,7 +57,7 @@ module.exports = (app) => {
   router.get('/', getAllSchoenen);
   router.get('/id/:id', getSchoenById);
   router.get('/size/:size', getSchoenBySize);
-  router.get('/name/name', getSchoenByName);
+  router.get('/name/:name', getSchoenByName);
 
   const requireAdmin = makeRequireRole(Role.ADMIN);
 
