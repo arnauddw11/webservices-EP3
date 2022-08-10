@@ -7,10 +7,10 @@ const prisma = new PrismaClient();
 
 async function main() {
   await prisma.$connect();
-  prisma.bovenstuks.deleteMany({});
-  prisma.schoens.deleteMany({});
-  prisma.broeks.deleteMany({});
-  prisma.users.deleteMany({});
+  await prisma.bovenstuks.deleteMany({});
+  await prisma.schoens.deleteMany({});
+  await prisma.broeks.deleteMany({});
+  await prisma.users.deleteMany({});
 
   const arnaud = await prisma.users.upsert({
     where: {
