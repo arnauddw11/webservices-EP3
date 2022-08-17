@@ -31,7 +31,6 @@ const create = async ({
   dropdate,
   size,
 }) => {
-  console.log(name);
   debugLog('maak nieuwe broek aan', {
     name,
     dropdate,
@@ -49,11 +48,13 @@ const create = async ({
 const updateById = (id, {
   name,
   dropdate,
+  size,
 }) => {
   debugLog(`Updating broek met id ${id}`);
   const updatedBroek = broekRepository.updateById(id, {
     name,
     dropdate,
+    size,
   });
   return updatedBroek;
 };

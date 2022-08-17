@@ -1,7 +1,7 @@
 const {
   getChildLogger,
 } = require('../core/logging');
-const schoenRepository = require('../repository/kledingstukken/broekRepository');
+const schoenRepository = require('../repository/kledingstukken/schoenRepository');
 
 const debugLog = (message, meta = {}) => {
   if (!this.logger) this.logger = getChildLogger('schoen-service');
@@ -20,15 +20,18 @@ const getBySize = async (size) => {
 const create = async ({
   name,
   dropdate,
+  size,
 }) => {
   debugLog('maak nieuwe schoen aan', {
     name,
     dropdate,
+    size,
   });
 
   return schoenRepository.create({
     name,
     dropdate,
+    size,
   });
 };
 
@@ -36,11 +39,13 @@ const create = async ({
 const updateById = (id, {
   name,
   dropdate,
+  size,
 }) => {
   debugLog(`Updating schoen met id ${id}`);
   const updatedSchoen = schoenRepository.updateById(id, {
     name,
     dropdate,
+    size,
   });
   return updatedSchoen;
 };

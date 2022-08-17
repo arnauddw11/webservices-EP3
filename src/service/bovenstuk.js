@@ -18,15 +18,18 @@ const getBySize = async (size) => {
 const create = async ({
   name,
   dropdate,
+  size,
 }) => {
   debugLog('maak nieuw bovenstuk aan', {
     name,
     dropdate,
+    size,
   });
 
   return bovenstukRepository.create({
     name,
     dropdate,
+    size,
   });
 };
 
@@ -34,11 +37,13 @@ const create = async ({
 const updateById = (id, {
   name,
   dropdate,
+  size,
 }) => {
   debugLog(`Updating bovenstuk met id ${id}`);
   const updatedBovenstuk = bovenstukRepository.updateById(id, {
     name,
     dropdate,
+    size,
   });
   return updatedBovenstuk;
 };

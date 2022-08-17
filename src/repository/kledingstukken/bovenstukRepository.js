@@ -2,7 +2,7 @@ const { bovenstukModel } = require('../../data/models/bovenstuk');
 const { getChildLogger } = require('../../core/logging');
 
 const debugLog = (message, meta = {}) => {
-  if (!this.logger) this.logger = getChildLogger('kledingstuk-service');
+  if (!this.logger) this.logger = getChildLogger('bovenstuk-repo');
   this.logger.debug(message, meta);
 };
 
@@ -50,11 +50,11 @@ const updateById = async (id, {
 const findById = async (id) => {
   try{
     const data = await bovenstukModel.findById(id).exec();
-    debugLog('findById(' + id + ') succesvol','');
     if(!data) {
       debugLog('Geen document gevonden');
       throw new Error('Geen document gevonden');
     }
+    debugLog('findById(' + id + ') succesvol','');
     return data;
   } catch (error) {
     debugLog('FindById error:', error);

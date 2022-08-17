@@ -23,6 +23,7 @@ const makeExposedUser = ({
 
 const makeLoginData = async (user) => {
   const token = await generateJWT(user);
+  debugLog('Aanmaken van login data succesvol');
 
   return {
     user: makeExposedUser(user),
@@ -36,13 +37,11 @@ const login = async (email, password) => {
   if (!user) {
     throw ServiceError.unauthorized('Gegeven email en password matchen niet');
   }
-
-  const passwordValid = await verifyPassword(password, user.password);
-
+  const passwordValid = await verifyPassword(password, user.password);  
   if (!passwordValid) {
     throw ServiceError.unauthorized('Gegeven email en password matchen niet');
   }
-
+  debugLog('Login succesvol');
   return await makeLoginData(user);
 };
 
@@ -59,7 +58,7 @@ const register = async ({
     email,
     roles: [Role.ADMIN],
   });
-
+  debugLog('User succesvol gecreeërd');
   return await makeLoginData(user);
 };
 
@@ -68,6 +67,7 @@ const getAll = async () => {
   debugLog('Alle users ophalen');
   const data = await userRepository.findAll();
   const count = data.length;
+  debugLog(`getAll succesvol, ${count} users gevonden`);
   return {
     data: data.map(makeExposedUser),
     count,
@@ -83,7 +83,7 @@ const getById = async (id) => {
   if (!user) {
     throw ServiceError.notFound(`Geen user met id ${id} bestaat`, { id });
   }
-
+  debugLog(`User met id ${id} gevonden`);
   return makeExposedUser(user);
 };
 const getByEmail = async (email) => {
@@ -94,20 +94,20 @@ const getByEmail = async (email) => {
   if (!user) {
     throw ServiceError.notFound(`Geen user met email ${email} bestaat`, { email });
   }
-
+  debugLog(`User met email ${email} gevonden`);
   return makeExposedUser(user);
 };
 const updateById = async (id, { name, email }) => {
   debugLog(`Updating user met id ${id}`, { name, email });
   const user = await userRepository.updateById(id, { name, email });
+  debugLog(`User met id ${id} succesvol geupdate`);
   return makeExposedUser(user);
 };
 
 
 const deleteById = async (id) => {
-  debugLog(`Verwijder user met id ${id}`);
   const deleted = await userRepository.deleteById(id);
-
+  debugLog(`User met id ${id} succesvol verwijderd`);
   if (!deleted) {
     throw ServiceError.notFound(`Geen user met id ${id} bestaat`, { id });
   }

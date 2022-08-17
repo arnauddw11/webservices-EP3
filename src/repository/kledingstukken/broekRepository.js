@@ -1,5 +1,5 @@
-const { schoenModel } = require('../../data/models/schoen');
 const { getChildLogger } = require('../../core/logging');
+const { broekModel } = require('../../data/models/broek');
 
 const debugLog = (message, meta = {}) => {
   if (!this.logger) this.logger = getChildLogger('kledingstuk-service');
@@ -8,7 +8,7 @@ const debugLog = (message, meta = {}) => {
 
 const findAll = async () => {
   try{
-    const data = await schoenModel.find().exec();
+    const data = await broekModel.find().exec();
     debugLog('findAll succesvol','');
     if(!data) {
       debugLog('Geen document gevonden');
@@ -23,7 +23,7 @@ const findAll = async () => {
 
 const findBySize = async (size) => {
   try{
-    const data = await schoenModel.find({'size': size}).exec();
+    const data = await broekModel.find({'size': size}).exec();
     debugLog('findBySize(' + size + ') succesvol','');
     if(!data) {
       debugLog('Geen document gevonden');
@@ -42,8 +42,7 @@ const create = async ({
   size,
 }) => {
   try {
-    console.log(name);
-    const broekData = await new schoenModel({name: name, dropdate: dropdate, size: size});
+    const broekData = await new broekModel({name: name, dropdate: dropdate, size: size});
     broekData.save();
     debugLog(broekData);
     return broekData;
@@ -58,7 +57,7 @@ const updateById = async (id, {
   size,
 }) => {
   try{
-    await schoenModel.findById(id).update({name: name, dropdate: dropdate, size: size}).exec();
+    await broekModel.findById(id).update({name: name, dropdate: dropdate, size: size}).exec();
   } catch(err){
     debugLog(err);
   }
@@ -66,12 +65,12 @@ const updateById = async (id, {
 
 const findById = async (id) => {
   try{
-    const data = await schoenModel.findById(id).exec();
-    debugLog('findById(' + id + ') succesvol','');
+    const data = await broekModel.findById(id).exec();
     if(!data) {
       debugLog('Geen document gevonden');
       throw new Error('Geen document gevonden');
     }
+    debugLog('findById(' + id + ') succesvol','');
     return data;
   } catch (error) {
     debugLog('FindById error:', error);
@@ -81,7 +80,7 @@ const findById = async (id) => {
 
 const findByName = async (name) => {
   try{
-    const data = await schoenModel.find({'name': name}).exec();
+    const data = await broekModel.find({'name': name}).exec();
     debugLog('findByName(' + name + ') succesvol','');
     if(!data) {
       debugLog('Geen document gevonden');
@@ -96,7 +95,7 @@ const findByName = async (name) => {
 
 const deleteById = async (id) => {
   try{
-    await schoenModel.deleteOne({_id: id}).exec();
+    await broekModel.deleteOne({_id: id}).exec();
   }catch(err){
     debugLog(err);
   }

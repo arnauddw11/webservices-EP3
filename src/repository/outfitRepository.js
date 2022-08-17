@@ -17,6 +17,7 @@ const debugLog = (message, meta = {}) => {
   if (!this.logger) this.logger = getChildLogger('outfit-service');
   this.logger.debug(message, meta);
 };
+
 const findAll = async () => {
   try {
     const data = await outfitModel.find().exec();
@@ -26,6 +27,7 @@ const findAll = async () => {
       broek: '',
       schoen: '',
     };
+
     for (var i = 0; i < data.length; i++) {
       const bovenstuk = await bovenstukModel.findById(data[i].bovenstukId).exec();
       const broek = await broekModel.findById(data[i].broekId).exec();

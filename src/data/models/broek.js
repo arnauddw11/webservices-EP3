@@ -4,7 +4,6 @@ const Schema = mongoose.Schema;
 const Broek = new Schema ({
   name: {
     type: String,
-
     validate: {
       validator: function (value){
         return value.length >= 3;
@@ -21,6 +20,7 @@ const Broek = new Schema ({
     type: String,
     validate : {
       validator: function(value){
+        // eslint-disable-next-line no-unused-vars
         return value = 'S', 'M', 'L', 'XL', 'XXL';
       },
     },
