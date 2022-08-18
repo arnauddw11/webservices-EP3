@@ -15,7 +15,7 @@ const {
 } = require('./core/logging');
 const {
   initializeDb,
-  shutdownData,
+  closeDb,
 } = require('./data');
 const installRest = require('./rest');
 
@@ -94,7 +94,7 @@ module.exports = async function createServer() {
     async stop() {
       {
         app.removeAllListeners();
-        await shutdownData();
+        await closeDb();
         getLogger().info('Goodbye');
       }
     },
