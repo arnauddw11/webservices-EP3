@@ -36,10 +36,10 @@ function getMongoDb() {
   return db;
 }
 async function closeDb() {
-  await mongoose.connection.dropDatabase();
+  //await mongoose.connection.dropDatabase();
   await mongoose.connection.close();
-  await db.stop();
 }
+
 module.exports = {
   initializeDb,
   getMongoDb,

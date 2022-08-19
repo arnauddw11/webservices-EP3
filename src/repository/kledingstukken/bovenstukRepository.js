@@ -43,6 +43,8 @@ const updateById = async (id, {
 }) => {
   try{
     await bovenstukModel.findById(id).update({name: name, dropdate: dropdate, size: size}).exec();
+    const bovenstukData = {id: id, name: name, dropdate: dropdate, size: size};
+    return bovenstukData;
   } catch(err){
     debugLog(err);
   }

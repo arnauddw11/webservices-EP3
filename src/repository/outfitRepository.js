@@ -14,7 +14,7 @@ const {
   getChildLogger,
 } = require('../core/logging');
 const debugLog = (message, meta = {}) => {
-  if (!this.logger) this.logger = getChildLogger('outfit-service');
+  if (!this.logger) this.logger = getChildLogger('outfit-repo');
   this.logger.debug(message, meta);
 };
 
@@ -64,10 +64,10 @@ const create = async ({
       schoenId: schoenId,
     });
     outfitData.save();
-    debugLog(outfitData);
     return outfitData;
-  } catch (err) {
-    debugLog(err);
+  } catch (error) {
+    debugLog('Error in create', error);
+    return({'error: ': error.name});
   }
 };
 
