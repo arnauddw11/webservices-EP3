@@ -101,7 +101,7 @@ const { requireAuthentication, makeRequireRole } = require('../core/auth');
  *      - Bovenstuk
  *     responses:
  *       200:
- *         description: The created bovenstuk
+ *         description: All Bovenstuks
  *         content:
  *           application/json:
  *             schema:

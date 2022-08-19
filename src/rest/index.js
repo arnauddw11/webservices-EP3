@@ -34,12 +34,15 @@ const installValidationRouter = require('./_validation');
  *         - type: object
  *           required:
  *             - name
+ *             - password
  *           properties:
  *             name:
  *               type: "string"
  *             email:
  *               type: "string"
  *               format: email
+ *            password:
+ *              type: "string" 
  *           example:
  *             $ref: "#/components/examples/User"
  *   examples:
@@ -47,6 +50,7 @@ const installValidationRouter = require('./_validation');
  *       _id: "62f0ef08c42d98f6f92358e3"
  *       name: "Arnaud dw"
  *       email: "arnaud.dw@kledingapp.be"
+ *       password: "test"
  */
 
 /**

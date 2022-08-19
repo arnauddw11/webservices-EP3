@@ -7,7 +7,108 @@ const { requireAuthentication, makeRequireRole } = require('../core/auth');
 
 const validate = require('./_validation');
 
+/**
+ * @swagger
+ * tags:
+ *   name: User
+ *   description: Represents user
+ */
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     User:
+ *       allOf:
+ *         - $ref: "#/components/schemas/User"
+ *         - type: object
+ *           required:
+ *             - name
+ *             - email
+ *             - password
+ *           properties:
+ *             name:
+ *               type: "string"
+ *             email:
+ *               type: "string"
+ *               format: "email"
+ *             password:
+ *               type: "string"
+ *           example:
+ *             $ref: "#/components/examples/User"
+ *       UserList:
+ *          allOf:
+ *            - $ref: "#/components/schemas/ListResponse"
+ *            - type: object
+ *              required:
+ *                - data
+ *              properties:
+ *                 data:
+ *                    type: array
+ *                    items:
+ *                      $ref: "#/components/schemas/User"
+ *             
+ *       responses:
+ *        404NotFound:  
+ *          description: The requested user was not found.
+ *          content: 
+ *           application/json:
+ *            schema:
+ *              type: object
+ *              required:
+ *                - code
+ *                - details
+ *              properties:
+ *               code:
+ *                type: "string"
+ *              details:
+ *               type: "string"
+ *               description: The details of the error.
+ *               stack:
+ *                type: "string"
+ *                description: The stacktrace of the error.
+ *                example:
+ *                 code: "NotFound"
+ *                 details: "The requested user was not found."
+ *   examples:
+ *     User:
+ *       _id: "62f0ef08c42d98f6f92358e3"
+ *       name: "Arnaud dw"
+ *       email: "arnaud.dw@kledingapp.be"
+ *       password: "test"
+ *   requestBodies:
+ *    User:
+ *     description: The user object to save
+ *     content:
+ *      application/json:
+ *        schema:
+ *          type: object
+ *          properties:
+ *            name:
+ *              type: "string"
+ *              example: "arnaud dw"
+ *            email:
+ *              type: "string"
+ *            password:
+ *              type: "string"
+ *              example: "password1"
+ */
 
+/**
+ * @swagger
+ * /api/user:
+ *   post:
+ *     summary: Login in the user
+ *     description: Login the user.
+ *     tags:
+ *      - User
+ *     responses:
+ *       200:
+ *         description: The logged in user
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: "#/components/schemas/User"
+ */
 const login = async (ctx) => {
   const { email, password } = ctx.request.body;
   const session = await userService.login(email, password);
@@ -20,6 +121,22 @@ login.validationScheme = {
   },
 };
 
+/**
+ * @swagger
+ * /api/user:
+ *   post:
+ *     summary: Register in the user
+ *     description: Register the user.
+ *     tags:
+ *      - User
+ *     responses:
+ *       200:
+ *         description: The registered in user
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: "#/components/schemas/User"
+ */
 const register = async (ctx) => {
   const session = await userService.register(ctx.request.body);
   ctx.body = session;
@@ -32,11 +149,50 @@ register.validationScheme = {
   },
 };
 
+/**
+ * @swagger
+ * /api/user:
+ *   get:
+ *     summary: Get all users
+ *     description: Get all users.
+ *     tags:
+ *      - User
+ *     responses:
+ *       200:
+ *         description: All the users
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: "#/components/schemas/User"
+ */
 const getAllUsers = async (ctx) => {
   const users = await userService.getAll();
   ctx.body = users;
 };
 
+/**
+ * @swagger
+ * /api/user/id/{id}:
+ *  get:
+ *    summary: Get user by id
+ *    description: Get user by id.
+ *    tags:
+ *    - User
+ *    parameters:
+ *    - in: path
+ *      name: id
+ *      description: The id of the user to get
+ *      required: true
+ *      schema:
+ *        type: string
+ *      responses:
+ *        200:
+ *          description: The requested user
+ *          content:
+ *            application/json:
+ *            schema:
+ *              $ref: "#/components/schemas/User"
+ * */
 const getUserById = async (ctx) => {
   const user = await userService.getById(ctx.params.id);
   ctx.body = user;
@@ -46,6 +202,30 @@ getUserById.validationScheme = {
     id: Joi.string(),
   },
 };
+
+/**
+ * @swagger
+ * /api/user/email/{email}:
+ *  get:
+ *    summary: Get user by email
+ *    description: Get user by email.
+ *    tags:
+ *    - User
+ *    parameters:
+ *    - in: path
+ *      name: id
+ *      description: The id of the user to get
+ *      required: true
+ *      schema:
+ *        type: string
+ *      responses:
+ *        200:
+ *          description: The requested user
+ *          content:
+ *            application/json:
+ *            schema:
+ *              $ref: "#/components/schemas/User"
+ * */
 const getUserByEmail = async (ctx) => {
   const user = await userService.getByEmail(ctx.params.email);
   ctx.body = user;
@@ -56,6 +236,32 @@ getUserByEmail.validationScheme = {
   },
 };
 
+/**
+ * @swagger
+ * /api/user/{id}:
+ *  put:
+ *    summary: Update user
+ *    description: Update user.
+ *    tags:
+ *    - User
+ *    requestBody:
+ *       $ref: "#/components/requestBodies/User"
+ *    parameters:
+ *    - in: path
+ *      name: id
+ *      description: The id of the user to update
+ *      required: true
+ *      schema:
+ *        type: string
+ *      responses:
+ *        200:
+ *          description: The updated user
+ *          content:
+ *            application/json:
+ *            schema:
+ *              $ref: "#/components/schemas/User"
+ * 
+ * */
 const updateUserById = async (ctx) => {
   const user = await userService.updateById(ctx.params.id, ctx.request.body);
   ctx.body = user;
@@ -70,6 +276,23 @@ updateUserById.validationScheme = {
   },
 };
 
+/**
+ * @swagger
+ * /api/user/{id}:
+ *  delete:
+ *    summary: Delete user
+ *    description: Delete user.
+ *    tags:
+ *    - User
+ *    parameters:
+ *    - in: path
+ *      name: id
+ *      description: The id of the user to delete
+ *      required: true
+ *      schema:
+ *        type: string
+ * 
+ * */
 const deleteUserById = async (ctx) => {
   await userService.deleteById(ctx.params.id);
   ctx.status = 204;

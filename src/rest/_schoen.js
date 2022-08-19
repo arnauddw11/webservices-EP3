@@ -32,7 +32,7 @@ const { requireAuthentication, makeRequireRole } = require('../core/auth');
  *               type: "integer"
  *           example:
  *             $ref: "#/components/examples/Schoen"
- *       SchoneList:
+ *       SchoenList:
  *          allOf:
  *            - $ref: "#/components/schemas/ListResponse"
  *            - type: object
