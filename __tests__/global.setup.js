@@ -1,5 +1,8 @@
 //import roles
 const config = require('config');
+const {
+  PrismaClient,
+} = require('@prisma/client');
 
 const Role = require('../src/core/roles');
 const {
@@ -7,9 +10,7 @@ const {
 } = require('../src/data/models/user');
 const { initializeDb } = require('../src/data');
 const { initializeLogger } = require('../src/core/logging');
-const {
-  PrismaClient,
-} = require('@prisma/client');
+
 
 module.exports = async () => {
   initializeLogger({
