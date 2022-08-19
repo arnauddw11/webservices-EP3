@@ -20,7 +20,14 @@ const installValidationRouter = require('./_validation');
  *           format: "ObjectId"
  *       example:
  *         _id: "62f0ef08c42d98f6f92358e3"
- *     
+ *     ListResponse:
+ *        required:
+ *         - count
+ *        properties:
+ *          count:
+ *           type: integer
+ *           description: The number of items in the list.
+ *           example: 1
  *     User:
  *       allOf:
  *         - $ref: "#/components/schemas/Base"
