@@ -99,7 +99,7 @@ const { requireAuthentication, makeRequireRole } = require('../core/auth');
  *      - Outfit
  *     responses:
  *       200:
- *         description: The created outfit
+ *         description: All outfit
  *         content:
  *           application/json:
  *             schema:

@@ -83,11 +83,9 @@ const validate = require('./_validation');
  *        schema:
  *          type: object
  *          properties:
- *            name:
- *              type: "string"
- *              example: "arnaud dw"
  *            email:
  *              type: "string"
+ *              example: "admin@kledingapp.be"
  *            password:
  *              type: "string"
  *              example: "password1"
@@ -95,12 +93,14 @@ const validate = require('./_validation');
 
 /**
  * @swagger
- * /api/user:
+ * /api/users/login:
  *   post:
  *     summary: Login in the user
  *     description: Login the user.
  *     tags:
  *      - User
+ *     requestBody:
+ *       $ref: "#/components/requestBodies/User"
  *     responses:
  *       200:
  *         description: The logged in user
@@ -151,7 +151,7 @@ register.validationScheme = {
 
 /**
  * @swagger
- * /api/user:
+ * /api/users/register:
  *   get:
  *     summary: Get all users
  *     description: Get all users.
@@ -172,7 +172,7 @@ const getAllUsers = async (ctx) => {
 
 /**
  * @swagger
- * /api/user/id/{id}:
+ * /api/users/id/{id}:
  *  get:
  *    summary: Get user by id
  *    description: Get user by id.
@@ -205,7 +205,7 @@ getUserById.validationScheme = {
 
 /**
  * @swagger
- * /api/user/email/{email}:
+ * /api/users/email/{email}:
  *  get:
  *    summary: Get user by email
  *    description: Get user by email.
@@ -238,7 +238,7 @@ getUserByEmail.validationScheme = {
 
 /**
  * @swagger
- * /api/user/{id}:
+ * /api/users/{id}:
  *  put:
  *    summary: Update user
  *    description: Update user.
@@ -278,7 +278,7 @@ updateUserById.validationScheme = {
 
 /**
  * @swagger
- * /api/user/{id}:
+ * /api/users/{id}:
  *  delete:
  *    summary: Delete user
  *    description: Delete user.

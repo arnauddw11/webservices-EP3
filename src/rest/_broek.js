@@ -101,7 +101,7 @@ const { requireAuthentication, makeRequireRole } = require('../core/auth');
  *      - Broek
  *     responses:
  *       200:
- *         description: The created pants
+ *         description: All pants
  *         content:
  *           application/json:
  *             schema:

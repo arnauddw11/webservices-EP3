@@ -131,8 +131,8 @@ const getAllBovenstukken = async (ctx) => {
  *          description: The requested bovenstuk
  *          content:
  *            application/json:
- *            schema:
- *              $ref: "#/components/schemas/Bovenstuk"
+ *              schema:
+ *                $ref: "#/components/schemas/Bovenstuk"
  * */
 const getBovenstukByName = async (ctx) => {
   ctx.body = await bovenstukService.getByName(ctx.params.name);

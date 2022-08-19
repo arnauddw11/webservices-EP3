@@ -177,7 +177,7 @@ const getSchoenById = async (ctx) => {
  *       $ref: "#/components/requestBodies/Schoen"
  *     responses:
  *       200:
- *         description: The created shoes
+ *         description: All shoes
  *         content:
  *           application/json:
  *             schema:
