@@ -8,7 +8,7 @@ const { requireAuthentication, makeRequireRole } = require('../core/auth');
  * @swagger
  * tags:
  *   name: Schoen
- *   description: Represents shoe
+ *   description: Represents shoes
  */
 /**
  * @swagger
