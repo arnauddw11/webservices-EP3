@@ -1,4 +1,4 @@
-const {withServer, login, loginAdmin} = require('../__tests__/supertest.setup');
+const {withServer, loginAdmin} = require('../__tests__/supertest.setup');
 
 describe('Bovenstuks', () => {
   let request;
